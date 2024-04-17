@@ -1,0 +1,69 @@
+﻿@model List<Client>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h1>Таблица клиентов</h1>
+
+<div class="rounded-3  p-3 mb-2 bg-white text-dark
+        shadow p-3 mb-5 bg-body-tertiary rounded">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Номер счета</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Дата рождения</th>
+                <th>ИНН</th>
+                <th>Статус</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model)
+            {
+                <tr>
+                    <td>@client.AccountNumber</td>
+                    <td>@client.LastName</td>
+                    <td>@client.Name</td>
+                    <td>@client.Patronymic</td>
+                    <td>@client.DateOfBirth.ToShortDateString()</td>
+                    <td>@client.INN</td>
+                    <td>@client.Status</td>
+                    <td>
+                        <form method="post" asp-controller="Home" asp-action="Change">
+                            <input type="hidden" name="clientId" value="@client.Id" />
+                            <select class="form-select" aria-label="Default select example"  name="stat" onchange="this.form.submit()">
+                                <option value="">Выберите статус</option>
+                                <option value="В работе" id="option2">В работе</option>
+                                <option value="Отказ" id="option3">Отказ</option>
+                                <option value="Сделка закрыта" id="option4">Сделка закрыта</option>
+                            </select>
+                        </form>
+                    </td>
+
+                </tr>
+                <script>
+
+                    var status = "@(client.Status)";
+                    var select = document.getElementsByName("stat")[0];
+                    for (var i = 0; i < select.options.length; i++) {
+                        if (select.options[i].value === status) {
+                            select.selectedIndex = i;
+                            break;
+                        }
+                    }
+
+                </script>
+            }
+        </tbody>
+    </table>
+</div>
+<div id="logoutButtons">
+    <form>
+        <button class="btn btn-success" id="logoutButton" asp-action="Logout" asp-controller="Home" type="submit">Выйти</button>
+    </form>
+
+</div>
