@@ -4,10 +4,12 @@
     ViewData["Title"] = "Home";
 }
 
-<h1>Таблица клиентов</h1>
+
 
 <div class="rounded-3  p-3 mb-2 bg-white text-dark
-        shadow p-3 mb-5 bg-body-tertiary rounded">
+        shadow p-3 mb-5 bg-body-tertiary rounded position-absolute top-50 start-50 translate-middle
+        w-75">
+    <h1>Таблица клиентов</h1>
     <table class="table">
         <thead>
             <tr>
@@ -60,10 +62,11 @@
             }
         </tbody>
     </table>
-</div>
-<div id="logoutButtons">
-    <form>
-        <button class="btn btn-success" id="logoutButton" asp-action="Logout" asp-controller="Home" type="submit">Выйти</button>
-    </form>
 
+    <div id="logoutButtons">
+        <form>
+            <button class="btn btn-success" id="logoutButton" asp-action="Logout" asp-controller="Home" type="submit">Выйти</button>
+        </form>
+
+    </div>
 </div>

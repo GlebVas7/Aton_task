@@ -27,8 +27,6 @@ namespace Aton_task.Controllers
 
         public IActionResult Index()
         {
-            
-            /*var user = HttpContext.User;*/
             var userId = HttpContext.Session.GetString("UserId");
             var user = _context.Users.Find(int.Parse(userId));
             var client = _context.Clients.ToList();
@@ -42,31 +40,6 @@ namespace Aton_task.Controllers
                 return View(client);
             }
         }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-        /*[AllowAnonymous]
-        public IActionResult Login()
-        {
-            return View();
-        }
-        [HttpPost]
-
-        public IActionResult Login(string username, string pass)
-        {
-            var user = _context.Users.FirstOrDefault(u => (u.Login == username) && (u.Password == pass));
-            if (user != null)
-            {
-                HttpContext.Session.SetString("UserId", user.UserId.ToString());
-                return RedirectToAction("Client");
-            }
-            else
-            {
-                ViewBag.ErrorMessage = "Неверные логин или пароль!";
-                return View();
-            }
-        }*/
         
         public async Task<IActionResult> Logout()
         {
@@ -74,20 +47,7 @@ namespace Aton_task.Controllers
             return RedirectToAction("Login","Access");
         }
 
-        public IActionResult Client()
-        {
-            var userId = HttpContext.Session.GetString("UserId");
-            if (userId == null)
-            {
-                return RedirectToAction("Login");
-            }
-
-            var user = _context.Users.Find(int.Parse(userId));
-            var client = _context.Clients.Where(c => c.ResponsibleFullName == user.FIO).ToList();
-
-            return View(client);
-        }
-
+      
         [HttpPost]
         public IActionResult Change(string clientId, string stat)
         {

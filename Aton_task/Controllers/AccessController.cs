@@ -25,7 +25,7 @@ namespace Aton_task.Controllers
             /*ClaimsPrincipal claimUser = HttpContext.User;
 
             if(claimUser.Identity.IsAuthenticated)
-                return RedirectToAction("Client","Home");*/
+                return RedirectToAction("Index","Home");*/
 
             return View();
         }

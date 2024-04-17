@@ -24,3 +24,10 @@ body {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+.navbar {
+    background: linear-gradient(to top, white, #bdbdbd);
+    
+}
+header {
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, .2);
+}
